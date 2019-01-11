@@ -41,6 +41,7 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     public int loading = 0;
     private static  int networkYn = 0;
     public int loadingresult = 0;
+    public int viewcnt = 0;
     Toolbar myToolbar;
 
     Activity activity;
@@ -76,6 +77,7 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
+        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
         driverMovieListView  = (ListView) getView().findViewById(R.id.subView1ListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
@@ -163,9 +165,9 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     }
 
     public void getItem(String target){
-        loading ++ ;
-        loadingresult = loading % 10;
-        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+        //loading ++ ;
+       // loadingresult = loading % 10;
+        //if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
        // AdsFull.getInstance(getActivity()).setAdsFull();
         //Toast.makeText (getActivity(), "로딩 카운트 : " + loadingresult , Toast.LENGTH_SHORT).show();
 

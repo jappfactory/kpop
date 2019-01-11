@@ -41,6 +41,7 @@ public class View5Fragment extends Fragment implements AbsListView.OnScrollListe
     public int loading = 0;
     private static  int networkYn = 0;
     public int loadingresult = 0;
+    public int viewcnt = 0;
     Toolbar myToolbar;
 
 
@@ -82,6 +83,7 @@ public class View5Fragment extends Fragment implements AbsListView.OnScrollListe
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
+        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
         driverMovieListView  = (ListView) getView().findViewById(R.id.subView5ListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
@@ -168,16 +170,16 @@ public class View5Fragment extends Fragment implements AbsListView.OnScrollListe
     }
 
     public void getItem(String target){
-        loading ++ ;
-        loadingresult = loading % 10;
-        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+        //loading ++ ;
+       // loadingresult = loading % 10;
+       // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
 
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;
 
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
 
-        Log.d("driverMovieList6", ""+driverMovieList);
+        //Log.d("driverMovieList6", ""+driverMovieList);
 
         // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
         new Handler().postDelayed(new Runnable() {

@@ -42,6 +42,7 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     public int loading = 0;
     public int loadingresult = 0;
     private static  int networkYn = 0;
+    public int viewcnt = 0;
     Toolbar myToolbar;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -90,6 +91,7 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
+        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
         driverMovieListView  = (ListView) getView().findViewById(R.id.subChannelListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
@@ -161,7 +163,7 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
             String nextPageToken= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
             target = mParam1 + nextPageToken;
 
-            Toast.makeText (getActivity(), "mParam1" + mParam1, Toast.LENGTH_LONG).show();
+            //Toast.makeText (getActivity(), "mParam1" + mParam1, Toast.LENGTH_LONG).show();
             // 다음 데이터를 불러온다.
             getItem(target);
         }
@@ -181,9 +183,9 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     }
 
     public void getItem(String target){
-        loading ++ ;
-        loadingresult = loading % 10;
-        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+       // loading ++ ;
+       // loadingresult = loading % 10;
+       // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
 
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;

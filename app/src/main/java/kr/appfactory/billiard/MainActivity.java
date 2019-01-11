@@ -174,8 +174,6 @@ public class MainActivity extends AppCompatActivity  {
         fragmentTransaction.replace(R.id.fragment, new View1Fragment());
         fragmentTransaction.commit();
 
-        AdsFull.getInstance(getApplicationContext()).setAds(this);
-
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //navigationView.setNavigationItemSelectedListener(this);
@@ -189,7 +187,9 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        AdsFull.getInstance(activity).setAdsFull();
+       // AdsFull.getInstance(getApplicationContext()).setAds(this);
+
+        //AdsFull.getInstance(activity).setAdsFull();
         Button MyfavoritesButton = (Button) findViewById(R.id.MyfavoritesButton);
 
         //즐겨찾기저장추가

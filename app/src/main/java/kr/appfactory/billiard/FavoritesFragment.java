@@ -40,6 +40,7 @@ public class FavoritesFragment extends Fragment {
     public int loading = 0;
     public int loadingresult = 0;
     private static  int networkYn = 0;
+    public int viewcnt = 0;
     Toolbar myToolbar;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -85,6 +86,7 @@ public class FavoritesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
+        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
 
         driverMovieListView  = (ListView) getView().findViewById(R.id.subFavoritesListView);
         driverMovieList = new ArrayList<DriverMovie>();
