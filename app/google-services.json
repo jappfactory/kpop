@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1025462847266-13bid9pi3oh1kaolkbuvm8ie99gpf7j7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.appfactory.billiard",
+            "certificate_hash": "5c1ee703eb8d8e381fe35f291b349817107a11f3"
+          }
+        },
+        {
           "client_id": "1025462847266-abldq1fkrn4llh2shk3dfsjdo36gd9t7.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025462847266-abldq1fkrn4llh2shk3dfsjdo36gd9t7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

@@ -799,7 +799,7 @@ class gms_reg extends AsyncTask<Void, Void, String> {
         String temp;
         URL url;
 
-        Log.d("주소 url 2 ", ""+FirebaseInstanceId.getInstance().getToken() ) ;
+        //Log.d("주소 url 2 ", ""+FirebaseInstanceId.getInstance().getToken() ) ;
         try {
             url = new URL(target2);
             //Log.e("주소 url 2 ", ""+url);
@@ -828,7 +828,7 @@ class gms_reg extends AsyncTask<Void, Void, String> {
                 try {
 
                     url = new URL(target);
-                    //Log.e("주소 url 1", ""+url);
+                   //Log.e("주소 url 1", ""+url);
 
 
                     httpURLConnection = (HttpURLConnection) url.openConnection();
