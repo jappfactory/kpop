@@ -394,14 +394,14 @@ public class MainActivity extends AppCompatActivity  {
                 itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 4구 모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL43b2md03gKeHH28o67I0gCI-TXnQ3UQZ&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 4구 실력 향상을 위한 기본 배치 연습", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL43b2md03gKcc3sf4h_JsuDi6jE0Tfcm&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 끌어치기를 이용한 4구 모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL43b2md03gKeLLTqOttn7KZQxaQkej-vb&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
+/*
                 itemList3.add(new MenuItema("[아이빌리TV] 당구기초", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PB4HKERIKQa_4KxIYeLxeNM&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[아이빌리TV] 당구두께조절", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PCD6KLQJo02Kxw6P-9GC8-3&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[아이빌리TV] 당구 끌어치기,밀어치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PCRppnvEjQoNTpxeQprdYWK&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[아이빌리TV] 4구당구 1,2쿠션", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PCS9XoC2Y4LMMJUFgcxW_gl&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[아이빌리TV] 4구당구모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PDvfzfZX7-47Z6uchWXHpVL&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[아이빌리TV] 3쿠션기초", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLQIx-v8Vj3PApkjxtUevIiM_7OEXkRS0l&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
+*/
                 itemList3.add(new MenuItema("[닥스김의 당구TV] 뒤돌려치기,앞돌리기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL_OXA-uPAecVMKL-m55oIzU0XD-YSRndq&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[닥스김의 당구TV] 뱅크샷, 대회전", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL_OXA-uPAecV4RbwqJvbCnd7wLVEhA6kJ&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
                 itemList3.add(new MenuItema("[닥스김의 당구TV] 빗겨치기, 세워치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL_OXA-uPAecU3sQTNnT3x951dQIhpB4E5&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
