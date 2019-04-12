@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
     private String mParam1;
     private String Keyword;
     Activity activity;
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoLicense=youtube&videoEmbeddable=true&&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=";
 
 
     private OnFragmentInteractionListener mListener;
@@ -121,6 +121,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
         Keyword = ((MainActivity)getActivity()).getURLEncode(""+mParam1);
         target = target + Keyword +"&pageToken=";
 
+        Log.e("target", target);
         getItem(target);
     }
 

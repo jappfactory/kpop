@@ -47,7 +47,7 @@ public class View4Fragment extends Fragment implements AbsListView.OnScrollListe
 
     Activity activity;
     String Keyword = ((MainActivity)getActivity()).getURLEncode("포켓볼");
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
     private OnFragmentInteractionListener mListener;
 
