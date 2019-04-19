@@ -52,11 +52,16 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
         viewcnt ++ ;
         SharedPreference.putSharedPreference(getApplicationContext(), "viewcnt", viewcnt);
         setContentView(R.layout.activity_movie_play);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        // 화면을 landscape(가로) 화면으로 고정하고 싶은 경우
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE);
 
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView title = (TextView) findViewById(R.id.toolbar_title);
-        TextView desc = (TextView) findViewById(R.id.movie_desc);
+        //TextView desc = (TextView) findViewById(R.id.movie_desc);
 
         dbHelper = new DBHelper(getApplicationContext());
         Intent intent = getIntent();
@@ -67,7 +72,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
         publishedAt = intent.getStringExtra("publishedAt");
         thum_pic = intent.getStringExtra("thum_pic");
         title.setText(subject);
-        desc.setText(videodesc);
+        //desc.setText(videodesc);
 
 
 

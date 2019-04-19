@@ -32,7 +32,7 @@
             android:id="@+id/youtubeView"
             class="com.google.android.youtube.player.YouTubePlayerView"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="280dp" />
         </LinearLayout>
 
 
@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:background="@color/white"
                 >
+<!--
 
             <TextView
                 android:id="@+id/movie_desc"
@@ -64,13 +65,14 @@
                 android:textColor="@android:color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
+-->
 
         </ScrollView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_gravity="bottom"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
@@ -78,7 +80,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
@@ -94,14 +96,14 @@
                 android:background="@color/colorBlue"
                 android:text="친구에게공유"
                 android:textColor="#ffffff"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
 
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="2dp"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
@@ -111,7 +113,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
@@ -128,7 +130,7 @@
                 android:background="@color/colorBlue"
                 android:text="즐겨찾기저장"
                 android:textColor="#ffffff"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <Button
@@ -141,7 +143,7 @@
                 android:background="@color/DarkNavy"
                 android:text="즐겨찾기삭제"
                 android:textColor="#ffffff"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             </RelativeLayout>

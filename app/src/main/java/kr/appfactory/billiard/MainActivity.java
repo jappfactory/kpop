@@ -96,8 +96,12 @@ public class MainActivity extends AppCompatActivity  {
 
         SharedPreferences  PageToken = getSharedPreferences(nextPageToken, 0);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // 화면을 landscape(가로) 화면으로 고정하고 싶은 경우
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
 
         new gms_reg().execute();
         new versionCheck(activity).execute();
@@ -905,7 +909,7 @@ class gms_reg extends AsyncTask<Void, Void, String> {
         String temp;
         URL url;
 
-        //Log.d("주소 url 2 ", ""+FirebaseInstanceId.getInstance().getToken() ) ;
+       Log.d("주소 url 2 ", ""+target) ;
         try {
             url = new URL(target2);
             //Log.e("주소 url 2 ", ""+url);
