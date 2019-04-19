@@ -61,7 +61,10 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name="kr.appfactory.billiard.MoviePlayActivity" android:configChanges="orientation|screenSize"></activity>
+
+        <activity android:name="kr.appfactory.billiard.MoviePlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            ></activity>
     </application>
 
 </manifest>
