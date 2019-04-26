@@ -227,7 +227,10 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
 
-        AdsFull.getInstance(getApplicationContext()).setAdsFull();
+
+        //Toast.makeText(getApplicationContext(),"닫기 광고 ",Toast.LENGTH_LONG).show();
+         //Log.d(TAG, "닫기 광고 ");
+        //AdsFull.getInstance(getApplicationContext()).setAdsFull();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
 
