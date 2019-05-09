@@ -632,7 +632,8 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
         try {
 
             URL url = new URL(target);
-            //Log.e("주소 url", ""+url);
+            Log.e("주소 url", ""+url);
+            //Toast.makeText (mContext, "클릭" + url , Toast.LENGTH_LONG).show();
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();

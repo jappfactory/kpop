@@ -168,15 +168,15 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
 
 
 
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=";
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyAxktqOQC0vC9eL622AzlJGwtSs2VHAH00&safeSearch=strict&type=video&q=";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
 
 
-            target = target + Keyword +"&pageToken="+ aa;
+            String target2 = target + Keyword +"&pageToken="+ aa;
 
 
             // 다음 데이터를 불러온다.
-            getItem(target);
+            getItem(target2);
         }
     }
 
