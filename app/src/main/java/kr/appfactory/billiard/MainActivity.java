@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-       // AdsFull.getInstance(getApplicationContext()).setAds(this);
+        AdsFull.getInstance(getApplicationContext()).setAds(this);
 
         //AdsFull.getInstance(activity).setAdsFull();
         Button MyfavoritesButton = (Button) findViewById(R.id.MyfavoritesButton);

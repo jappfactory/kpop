@@ -68,7 +68,7 @@
             android:layout_marginBottom="0dp"
             android:orientation="vertical"
             >
-<!--
+
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
                 android:layout_width="match_parent"
@@ -78,10 +78,11 @@
                 android:layout_gravity="center"
                 android:padding="2dp"
                 ads:adSize="BANNER"
+                tools:visibility="visible"
                 ads:adUnitId="@string/banner_ad_unit_id">
 
             </com.google.android.gms.ads.AdView>
--->
+
         </LinearLayout>
 
     </LinearLayout>
