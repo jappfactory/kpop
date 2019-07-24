@@ -47,7 +47,7 @@ public class View4Fragment extends Fragment implements AbsListView.OnScrollListe
 
     Activity activity;
     String Keyword = ((MainActivity)getActivity()).getURLEncode("포켓볼");
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=date&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
 
     private OnFragmentInteractionListener mListener;
 
@@ -153,10 +153,10 @@ public class View4Fragment extends Fragment implements AbsListView.OnScrollListe
             progressBarShow();
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
 
-            String target2 = target + aa;
 
+            target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken="+ aa;
             // 다음 데이터를 불러온다.
-            getItem(target2);
+            getItem(target);
         }
     }
 

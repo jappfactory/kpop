@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
     private String mParam1;
     private String Keyword;
     Activity activity;
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoLicense=youtube&videoEmbeddable=true&&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoLicense=youtube&videoEmbeddable=true&&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
 
 
     private OnFragmentInteractionListener mListener;
@@ -119,7 +119,8 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
         // 다음 데이터를 불러온다.
 
         Keyword = ((MainActivity)getActivity()).getURLEncode(""+mParam1);
-        target = target + Keyword +"&pageToken=";
+
+        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken=";
 
         Log.e("target", target);
         getItem(target);
@@ -168,15 +169,14 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
 
 
 
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=";
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
 
-
-            String target2 = target + Keyword +"&pageToken="+ aa;
+            target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken="+ aa;
 
 
             // 다음 데이터를 불러온다.
-            getItem(target2);
+            getItem(target);
         }
     }
 
