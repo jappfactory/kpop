@@ -109,6 +109,7 @@ public class View2Fragment extends Fragment implements AbsListView.OnScrollListe
         driverMovieListView.setOnScrollListener(this);
 
         // 다음 데이터를 불러온다.
+        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword;
         getItem(target);
     }
 
