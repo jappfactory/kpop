@@ -30,6 +30,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 
 public class SearchFragment extends Fragment implements AbsListView.OnScrollListener {
 
@@ -122,7 +124,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
 
         target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken=";
 
-        Log.e("target", target);
+        //Log.e("target", target);
         getItem(target);
     }
 
@@ -196,6 +198,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
         if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
        // AdsFull.getInstance(getActivity()).setAdsFull();
         //Toast.makeText (getActivity(), "로딩 카운트 : " + loadingresult , Toast.LENGTH_SHORT).show();
+
 
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;

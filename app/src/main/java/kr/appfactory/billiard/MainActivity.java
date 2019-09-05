@@ -370,8 +370,10 @@ public class MainActivity extends AppCompatActivity  {
 
                     String title = ie.next().toString();
                     String Keyword = getURLEncode(""+title+" 당구");
+
+
                     //itemList2.add(new MenuItema("명품스윙 에이미 조 골프 레슨", "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=포켓볼&pageToken="));
-                    itemList2.add(new MenuItema(""+title+" 프로", "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video"));
+                    itemList2.add(new MenuItema(""+title+" 프로", "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video&q="+getURLEncode(title)+"&pageToken="));
 
                 }
 
@@ -387,6 +389,10 @@ public class MainActivity extends AppCompatActivity  {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+                        Log.d("check URL", itemList2.get(position).getMenu_link());
+
                         fragmentTransaction.replace(R.id.fragment, ChannelFragment.newInstance(itemList2.get(position).getMenu_link(), itemList2.get(position).getMenu_title()));
                         fragmentTransaction.commit();
                         mDrawerLayout.closeDrawers();
