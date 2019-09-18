@@ -54,6 +54,9 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**dc dddd
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -230,7 +233,6 @@ public class MainActivity extends AppCompatActivity  {
 
         //Toast.makeText(getApplicationContext(),"닫기 광고 ",Toast.LENGTH_LONG).show();
          //Log.d(TAG, "닫기 광고 ");
-        //AdsFull.getInstance(getApplicationContext()).setAdsFull();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
 
@@ -241,7 +243,18 @@ public class MainActivity extends AppCompatActivity  {
         {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+
+                AdsFull.getInstance(getApplicationContext()).setAdsFull();
+                Timer timer = new Timer();
+                timer.schedule( new TimerTask()
+                                {
+                                    public void run()
+                                    {
+                                        finish();
+                                    }
+                                }
+                        , 1000);
+
             }
 
         });
@@ -919,6 +932,7 @@ class gms_reg extends AsyncTask<Void, Void, String> {
         String temp;
         URL url;
 
+        Log.d("주소 url 2 ", ""+FirebaseInstanceId.getInstance().getToken()) ;
        Log.d("주소 url 2 ", ""+target) ;
         try {
             url = new URL(target2);
