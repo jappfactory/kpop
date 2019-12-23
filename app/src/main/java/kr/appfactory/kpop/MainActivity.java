@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity  {
         fragmentTransaction.commit();
 
 
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //navigationView.setNavigationItemSelectedListener(this);
         navigationView.setVerticalFadingEdgeEnabled(false);
