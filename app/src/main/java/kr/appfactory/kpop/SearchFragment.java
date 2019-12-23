@@ -1,4 +1,4 @@
-package kr.appfactory.billiard;
+package kr.appfactory.kpop;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,19 +8,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class View1Fragment extends Fragment implements AbsListView.OnScrollListener {
+public class SearchFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private boolean lastItemVisibleFlag = false;    // 리스트 스크롤이 마지막 셀(맨 바닥)로 이동했는지 체크할 변수
     public  ListView driverMovieListView;
@@ -41,12 +37,13 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     public int loading = 0;
     private static  int networkYn = 0;
     public int loadingresult = 0;
-    public int viewcnt = 0;
     Toolbar myToolbar;
-
+    private static final String ARG_PARAM1 = "param1";
+    private String mParam1;
+    private String Keyword;
     Activity activity;
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("당구강좌 기초");
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&videoLicense=youtube&videoEmbeddable=true&&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,18 +54,28 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
 
         activity = (Activity) getActivity();
     }
-    public View1Fragment() {}
+    public SearchFragment() {}
 
-    public static View1Fragment newInstance() {
-        View1Fragment fragment = new View1Fragment();
+
+    public static SearchFragment newInstance(String param1) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+
+        }
 
     }
 
@@ -77,34 +84,43 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
-        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
-        driverMovieListView  = (ListView) getView().findViewById(R.id.subView1ListView);
+        driverMovieListView  = (ListView) getView().findViewById(R.id.subSearchListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
         driverMovieListView.setAdapter(driveradapter);
+
+
+
 
         driverMovieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent intent = new Intent(view.getContext(), MoviePlayActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("videoId", ""+  driverMovieList.get(position).getMovie_videoId());
+                intent.putExtra("title",""+ driverMovieList.get(position).getMovie_title());
+                intent.putExtra("videodesc", ""+  driverMovieList.get(position).getMovie_desc());
+                intent.putExtra("publishedAt",""+ driverMovieList.get(position).getMovie_date());
+                intent.putExtra("thum_pic",""+ driverMovieList.get(position).getThum_img());
 
-                    Intent intent = new Intent(view.getContext(), MoviePlayActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("videoId", ""+  driverMovieList.get(position).getMovie_videoId());
-                    intent.putExtra("title",""+ driverMovieList.get(position).getMovie_title());
-                    intent.putExtra("videodesc", ""+  driverMovieList.get(position).getMovie_desc());
-                    intent.putExtra("publishedAt",""+ driverMovieList.get(position).getMovie_date());
-                    intent.putExtra("thum_pic",""+ driverMovieList.get(position).getThum_img());
 
-                    view.getContext().startActivity(intent);
+                view.getContext().startActivity(intent);
+
             }
         });
 
         driverMovieListView.setOnScrollListener(this);
         // 다음 데이터를 불러온다.
-        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword;
+
+        Keyword = ((MainActivity)getActivity()).getURLEncode(""+mParam1);
+
+        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken=";
+
+        //Log.e("target", target);
         getItem(target);
     }
+
     public void progressBarShow(){
 
         driverMovieListView.setOnTouchListener(new View.OnTouchListener() {
@@ -132,7 +148,6 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
 
     }
 
-
     @Override
     public void onScrollStateChanged(AbsListView absListView, int scrollState) {
 
@@ -144,13 +159,17 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag && mLockListView == false) {
             // 화면이 바닦에 닿을때 처리
             // 로딩중을 알리는 프로그레스바를 보인다.
+            //progressBar.setVisibility(View.VISIBLE);
             progressBarShow();
 
 
 
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
 
             target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken="+ aa;
+
+
             // 다음 데이터를 불러온다.
             getItem(target);
         }
@@ -167,160 +186,62 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     }
 
     public void getItem(String target){
-        //loading ++ ;
-       // loadingresult = loading % 10;
-        //if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+        loading ++ ;
+        loadingresult = loading % 10;
+        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
        // AdsFull.getInstance(getActivity()).setAdsFull();
         //Toast.makeText (getActivity(), "로딩 카운트 : " + loadingresult , Toast.LENGTH_SHORT).show();
 
+
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;
-
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
 
-        // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
 
+
+        // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
+
                 try {
+
                     driveradapter.notifyDataSetChanged();
-                   // driveradapter.refreshAdapter(driverMovieList);
+
                     String totalResults= SharedPreference.getSharedPreference(getActivity(), "totalResults");
                     DecimalFormat decimalFormat = new DecimalFormat("#,###");
                     totalResults = decimalFormat.format(Double.parseDouble(totalResults.toString().replaceAll(",","")));
                     TextView searchcnt =  getView().findViewById(R.id.searchcnt);
                     searchcnt.setText(totalResults);
 
-                    mLockListView = false;
                     progressBarHidden();
+                    mLockListView = false;
 
                 }catch  (Exception e) {
                     e.printStackTrace();
                 }
 
+
             }
         },1000);
+
 
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
-
         networkYn = ((MainActivity)getActivity()).Online();
         if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
-        View view=inflater.inflate(R.layout.fragment_view1, container, false);
+
+        View view=inflater.inflate(R.layout.fragment_search, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("당구 기초 영상");
-
-
-        final Button sub1Button = (Button) view.findViewById(R.id.sub1Button);
-        final Button sub2Button = (Button) view.findViewById(R.id.sub2Button);
-        final Button sub3Button = (Button) view.findViewById(R.id.sub3Button);
-        final Button sub4Button = (Button) view.findViewById(R.id.sub4Button);
-        final Button sub5Button = (Button) view.findViewById(R.id.sub5Button);
-
-
-        sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
-
-        sub1Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub2Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub3Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub4Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub5Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
-
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new View1Fragment());
-                fragmentTransaction.commit();
-
-            }
-        });
-
-        sub2Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub2Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub3Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub4Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub5Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new View2Fragment());
-                fragmentTransaction.commit();
-
-            }
-        });
-
-
-
-        sub3Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub2Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub3Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub4Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub5Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new View3Fragment());
-                fragmentTransaction.commit();
-
-            }
-        });
-
-
-        sub4Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub2Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub3Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub4Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub5Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new View4Fragment());
-                fragmentTransaction.commit();
-
-            }
-        });
-
-        sub5Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sub1Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub2Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub3Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub4Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-                sub5Button.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new View5Fragment());
-                fragmentTransaction.commit();
-
-            }
-        });
-
+        actionBar.setTitle("\""+mParam1+"\" 로 검색된 결과");
 
         return view;
     }
@@ -338,6 +259,8 @@ public class View1Fragment extends Fragment implements AbsListView.OnScrollListe
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
+       // new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target).cancel(true);
 
     }
 

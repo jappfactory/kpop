@@ -127,30 +127,6 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_gravity="left"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginLeft="4dp"
-                    android:text="당구강좌"
-                    android:textColor="#FFFFFF"
-
-                    android:background="@color/colorBlueDark"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <ListView
-                    android:id="@+id/club_lesson"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="0dp"
-                    android:divider="@color/colorBlueDark"
-                    android:dividerHeight="1dp"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"></ListView>
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -159,46 +135,48 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="4dp"
-                    android:text="프로 선수 영상"
+                    android:text="Best KPOP by Year"
                     android:textColor="#FFFFFF"
                     android:background="@color/colorBlueDark"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <ListView
-                    android:id="@+id/pro_lesson"
+                    android:id="@+id/movi_channel"
                     android:layout_width="match_parent"
-                    android:layout_height="900dp"
-                    android:divider="@color/colorBlueDark"
-                    android:dividerHeight="1dp"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    android:paddingBottom="0dp"></ListView>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="4dp"
-                    android:text="유튜브 채널"
-                    android:textColor="#FFFFFF"
-                    android:background="@color/colorBlueDark"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <ListView
-                    android:id="@+id/channel_lesson"
-                    android:layout_width="match_parent"
-                    android:layout_height="984dp"
+                    android:layout_height="360dp"
                     android:layout_marginTop="0dp"
                     android:divider="@color/colorBlueDark"
                     android:dividerHeight="1dp"
                     android:overScrollMode="never"
                     android:scrollbars="none"
                     android:paddingBottom="28dp"></ListView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:text="AGENCY'S KPOP"
+                    android:textColor="#FFFFFF"
+                    android:background="@color/colorBlueDark"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/enter_com"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:layout_marginTop="0dp"
+                    android:divider="@color/colorBlueDark"
+                    android:dividerHeight="1dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:paddingBottom="28dp"></ListView>
+
 
 
             </LinearLayout>
@@ -212,7 +190,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_weight="1"
                     android:background="@color/colorGreenLight"
-                    android:text="My 즐겨찾기    >> "
+                    android:text="My Favourites >> "
                     android:textColor="#ffffff"
                     android:layout_alignBottom="@id/scrollview"
                     android:textSize="16dp"

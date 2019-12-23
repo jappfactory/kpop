@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.kpop;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("kr.co.dodoom.sacoop_dev", appContext.getPackageName());
+        assertEquals("kr.appfactory.kpop", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package kr.appfactory.billiard;
+package kr.appfactory.kpop;
 
 import android.app.Activity;
 import android.content.Context;

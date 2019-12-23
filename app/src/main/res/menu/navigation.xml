@@ -5,9 +5,6 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/club_movie" android:title="" app:actionLayout="@layout/fb_menu_item" > </item>
-    </group>
-    <group android:checkableBehavior="single">
     <item android:title="유튜브 레슨 채널">
         <menu>
             <group android:checkableBehavior="single">

@@ -1,4 +1,4 @@
-package kr.appfactory.billiard;
+package kr.appfactory.kpop;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +23,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -66,8 +65,6 @@ public class MainActivity extends AppCompatActivity  {
     private static final String TAG = MainActivity.class.getSimpleName();
     final AppCompatActivity activity = this;
 
-    private String  target ="http://www.appfactory.kr/gms/reg/Billiard";;
-
     private  String nextPageToken;
     private  String version;
     private static Context context;
@@ -88,7 +85,6 @@ public class MainActivity extends AppCompatActivity  {
     public MenuItemAdapter menuItemAdapter2;
     public MenuItemAdapter menuItemAdapter3;
     private MaterialSearchView searchView;
-    MyFirebaseInstanceIDService mf;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,9 +101,6 @@ public class MainActivity extends AppCompatActivity  {
         // 화면을 landscape(가로) 화면으로 고정하고 싶은 경우
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-
-        new gms_reg().execute();
-        new versionCheck(activity).execute();
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -169,22 +162,16 @@ public class MainActivity extends AppCompatActivity  {
                 //Do some magic
             }
         });
- /*
 
-        //myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_left_menu); //뒤로가기 버튼을 본인이 만든 아이콘으로 하기 위해 필요
-*/
         /** * 기본 화면 설정 */
+
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, new View1Fragment());
+        fragmentTransaction.replace(R.id.fragment, ChannelFragment.newInstance("PLh-mdrcK_ya18h6BQrHFaNrqHtjnstQxH", "K-POP 2019"));
         fragmentTransaction.commit();
+
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -192,9 +179,6 @@ public class MainActivity extends AppCompatActivity  {
         navigationView.setVerticalFadingEdgeEnabled(false);
         navigationView.setVerticalScrollBarEnabled(false);
         navigationView.setHorizontalScrollBarEnabled(false);
-
-
-        updateIconBadge(activity,  0);
 
 
 
@@ -221,8 +205,6 @@ public class MainActivity extends AppCompatActivity  {
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-
        // Log.d(TAG, "페이지이동 ");
 
         return super.onKeyDown(keyCode, event);
@@ -230,12 +212,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
 
-
-        //Toast.makeText(getApplicationContext(),"닫기 광고 ",Toast.LENGTH_LONG).show();
-         //Log.d(TAG, "닫기 광고 ");
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
-
         builder.setIcon(R.drawable.billiard_icon);
         builder.setTitle(R.string.app_name);
         builder.setMessage(R.string.exitmsg);
@@ -292,193 +269,78 @@ public class MainActivity extends AppCompatActivity  {
         item.setChecked(true);
         switch (item.getItemId()){
 
-            case 2131230744: {
-
-                Toast.makeText (activity, "" + item.getItemId() , Toast.LENGTH_SHORT).show();
-                break;
-            }
-
             case android.R.id.home: {
-
 
                 // 데이터 원본 준비
                 itemList = new ArrayList<MenuItema>();
-
-
                 //어댑터 생성
                 menuItemAdapter = new MenuItemAdapter(activity, itemList);
-
                 //어댑터 연결
-                mnuListView = (ListView) findViewById(R.id.club_lesson);
+                mnuListView = (ListView) findViewById(R.id.movi_channel);
 
-                //Toast.makeText (activity, "클릭3" + mnuListView  , Toast.LENGTH_LONG).show();
                 mnuListView.setAdapter(menuItemAdapter);
 
+                // 데이터 원본 준비
 
-                itemList.add(new MenuItema("당구 기초 영상", "sub1"));
-                itemList.add(new MenuItema("4구 강좌 영상", "sub2"));
-                itemList.add(new MenuItema("3쿠션 강좌 영상", "sub3"));
-                itemList.add(new MenuItema("포켓볼 강좌 영상", "sub4"));
-                itemList.add(new MenuItema("당구묘기 영상", "sub5"));
-                //  menuItemAdapter = new MenuItemAdapter(context,  itemList, this);
+                itemList.add(new MenuItema("KPOP 2019 MV", "PLh-mdrcK_ya18h6BQrHFaNrqHtjnstQxH"));
+                itemList.add(new MenuItema("KPOP 2018 MV", "PLgA8PQBu3V3bWtTK4Qu-Ji4xhd1s7QZKE"));
+                itemList.add(new MenuItema("KPOP 2017 MV", "PL0dHPmqhiLT7Z_4Zty9O_2E6sS6zcRgT2"));
+                itemList.add(new MenuItema("KPOP 2016 MV", "PL0dHPmqhiLT7auoSrm9bmCOAzkMn-RZIE"));
+                itemList.add(new MenuItema("KPOP 2015 MV", "PL37A65FDB2C0123A7"));
+                itemList.add(new MenuItema("KPOP 2014 MV", "PL2HEDIx6Li8gT96_A5ZaoxThLHQl3B0Ck"));
+                itemList.add(new MenuItema("KPOP 2013 MV", "PLh-mdrcK_ya18h6BQrHFaNrqHtjnstQxH"));
+                itemList.add(new MenuItema("KPOP 2012 MV", "PL72879C58787B578A"));
+                itemList.add(new MenuItema("KPOP 2011 MV", "PL240042845F1C3EF2"));
+                itemList.add(new MenuItema("KPOP 2010 MV", "PLoIEYfEFzAMHZTOJtJPYSXMU66cVJVuPy"));
+
+
 
                 mnuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
+                      //  Toast.makeText (activity, "클릭 getMenu_title" + itemList.get(position).getMenu_title()  , Toast.LENGTH_SHORT).show();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                        if (itemList.get(position).getMenu_link() == "sub1")
-                            fragmentTransaction.replace(R.id.fragment, new View1Fragment());
-                        if (itemList.get(position).getMenu_link() == "sub2")
-                            fragmentTransaction.replace(R.id.fragment, new View2Fragment());
-                        if (itemList.get(position).getMenu_link() == "sub3")
-                            fragmentTransaction.replace(R.id.fragment, new View3Fragment());
-                        if (itemList.get(position).getMenu_link() == "sub4")
-                            fragmentTransaction.replace(R.id.fragment, new View4Fragment());
-                        if (itemList.get(position).getMenu_link() == "sub5")
-                            fragmentTransaction.replace(R.id.fragment, new View5Fragment());
-
-
+                        fragmentTransaction.replace(R.id.fragment, ChannelFragment.newInstance(itemList.get(position).getMenu_link(), itemList.get(position).getMenu_title()));
                         fragmentTransaction.commit();
                         mDrawerLayout.closeDrawers();
-
-                        // Toast.makeText (activity, "클릭 getMenu_title" + itemList.get(position).getMenu_title()  , Toast.LENGTH_SHORT).show();
-                        //Toast.makeText (activity, "클릭 getMenu_link" + itemList.get(position).getMenu_link()  , Toast.LENGTH_SHORT).show();
                     }
                 });
 
+
                 // 데이터 원본 준비
                 itemList2 = new ArrayList<MenuItema>();
-                ArrayList<Object> channel_list = new ArrayList<Object>();
-                channel_list.add("김경률");
-                channel_list.add("김행직");
-                channel_list.add("서현민");
-                channel_list.add("강동궁");
-                channel_list.add("김형곤");
-                channel_list.add("조명우");
-                channel_list.add("조재호");
-                channel_list.add("오성욱");
-                channel_list.add("김봉철");
-                channel_list.add("김재근");
-                channel_list.add("허정한");
-                channel_list.add("최성원");
-                channel_list.add("조치연");
-                channel_list.add("류승우");
-                channel_list.add("김가영");
-                channel_list.add("프레드릭 쿠드롱");
-                channel_list.add("토르비에른 블롬달");
-                channel_list.add("딕 야스퍼스");
-                channel_list.add("다니 산체스");
-                channel_list.add("마르코 자네티");
-                channel_list.add("세미흐 사이그네르");
-                channel_list.add("레이몽 클루망");
-                Iterator<Object> ie = channel_list.iterator();
-
-                while(ie.hasNext()) {
-
-
-
-                    String title = ie.next().toString();
-                    String Keyword = getURLEncode(""+title+" 당구");
-
-
-                    //itemList2.add(new MenuItema("명품스윙 에이미 조 골프 레슨", "https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q=포켓볼&pageToken="));
-                    itemList2.add(new MenuItema(""+title+" 프로", "https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&order=relevance&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video&q="+getURLEncode(title)+"&pageToken="));
-
-                }
-
                 //어댑터 생성
                 menuItemAdapter2 = new MenuItemAdapter(activity, itemList2);
                 //어댑터 연결
-                mnuListView2 = (ListView) findViewById(R.id.pro_lesson);
+                mnuListView2 = (ListView) findViewById(R.id.enter_com);
+
                 mnuListView2.setAdapter(menuItemAdapter2);
+
+                // 데이터 원본 준비
+
+                itemList2.add(new MenuItema("SMTOWN", "PLgA8PQBu3V3ajemYXWXTzEgCtr5WZblEY"));
+                itemList2.add(new MenuItema("BIG HIT Entertainment", "PLgA8PQBu3V3YoD6HEhGFsbvoMfZlHzbpp"));
+                itemList2.add(new MenuItema("YG Entertainment", "PLgA8PQBu3V3Z1A5VElFxIgR6-s64BtIdX"));
+                itemList2.add(new MenuItema("JYP Entertainment", "PLgA8PQBu3V3YRjm2XQ40tQzxm2_oPS58m"));
+                itemList2.add(new MenuItema("FNC Entertainment", "PLgA8PQBu3V3Yq7TItx0f2Rfx7onO4PfKD"));
+                itemList2.add(new MenuItema("Woollim Entertainment", "PLgA8PQBu3V3YyGsGRWkg5lcGm__XU2ojq"));
+                itemList2.add(new MenuItema("Jellyfish Entertainment", "PLgA8PQBu3V3Y6zlOVo-q80tSjEKarht1V"));
+                itemList2.add(new MenuItema("CUBE Entertainment", "PLgA8PQBu3V3ZTHzobqJ7J4VlaQW724v7o"));
+                itemList2.add(new MenuItema("PLEDIS Entertainment", "PLgA8PQBu3V3ZzEd50hGF3h3UeIQ69pUjx"));
+                itemList2.add(new MenuItema("Starship Entertainment", "PLgA8PQBu3V3Z5XvUJZetfVbPRYcFhghhX"));
+
 
 
                 mnuListView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //  Toast.makeText (activity, "클릭 getMenu_title" + itemList.get(position).getMenu_title()  , Toast.LENGTH_SHORT).show();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
-                        Log.d("check URL", itemList2.get(position).getMenu_link());
-
                         fragmentTransaction.replace(R.id.fragment, ChannelFragment.newInstance(itemList2.get(position).getMenu_link(), itemList2.get(position).getMenu_title()));
                         fragmentTransaction.commit();
                         mDrawerLayout.closeDrawers();
-                        //Toast.makeText (activity, "클릭 getMenu_title" + itemList2.get(position).getMenu_title()  , Toast.LENGTH_SHORT).show();
-
-
-                    }
-                });
-
-
-
-                // 데이터 원본 준비
-                itemList3 = new ArrayList<MenuItema>();
-
-
-//                itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 4구 기초", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL43b2md03gKdN2zJGzqFVG_3aCfR8Xltk&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-//                itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 4구 모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL43b2md03gKeHH28o67I0gCI-TXnQ3UQZ&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-//                itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 4구 실력 향상을 위한 기본 배치 연습", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL43b2md03gKcc3sf4h_JsuDi6jE0Tfcm&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-//                itemList3.add(new MenuItema("[당구강좌 4구 & 3C] 끌어치기를 이용한 4구 모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL43b2md03gKeLLTqOttn7KZQxaQkej-vb&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-/*
-                itemList3.add(new MenuItema("[아이빌리TV] 당구기초", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PB4HKERIKQa_4KxIYeLxeNM&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[아이빌리TV] 당구두께조절", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PCD6KLQJo02Kxw6P-9GC8-3&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[아이빌리TV] 당구 끌어치기,밀어치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PCRppnvEjQoNTpxeQprdYWK&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[아이빌리TV] 4구당구 1,2쿠션", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PCS9XoC2Y4LMMJUFgcxW_gl&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[아이빌리TV] 4구당구모아치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PDvfzfZX7-47Z6uchWXHpVL&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[아이빌리TV] 3쿠션기초", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLQIx-v8Vj3PApkjxtUevIiM_7OEXkRS0l&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-*/
-                itemList3.add(new MenuItema("[닥스김의 당구TV] 뒤돌려치기,앞돌리기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL_OXA-uPAecVMKL-m55oIzU0XD-YSRndq&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[닥스김의 당구TV] 뱅크샷, 대회전", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL_OXA-uPAecV4RbwqJvbCnd7wLVEhA6kJ&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[닥스김의 당구TV] 빗겨치기, 세워치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL_OXA-uPAecU3sQTNnT3x951dQIhpB4E5&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[닥스김의 당구TV] 옆돌리기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL_OXA-uPAecXWWlczy2R6ClLQfhxIE-9I&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[닥스김의 당구TV] 횡단샷, 더블쿠션, 더블레일", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL_OXA-uPAecXn8MpACZBBvXaFCcSv6YCo&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-                itemList3.add(new MenuItema("[정필규 세리당구] 힘조절", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL-qbw1O53wy7omCkTX2-bEaayDQrhouQm&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[정필규 세리당구] 하이런[HIGH RUN]", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL-qbw1O53wy5mg5igxQ1yY5DVnAMBquiA&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[정필규 세리당구] 세리 연습법", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL-qbw1O53wy4NuduocevxHaiemjgPxji0&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[정필규 세리당구] 제 3구역", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL-qbw1O53wy6jJnL019uRk4Ex_8RkUIPX&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[정필규 세리당구] 세리 만들기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PL-qbw1O53wy7iNAOa1owBLuwaYGy8MBxE&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-                itemList3.add(new MenuItema("[모두의 당구장] 당구시스템", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLBy7bkXgpNwaB3B80RcZKiSJGK0YMJOsu&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-                itemList3.add(new MenuItema("[조이빌리아드] The 레슨", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLklmWgSTNt_rqskHoRtNj1O9biyrnDdid&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-                itemList3.add(new MenuItema("[당구레슨] 비법전수", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&videoEmbeddable=true&playlistId=PLrrtQdjTU-KxO2TKmWz39OU25Q14G3De7&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-
-                /*
-
-                itemList3.add(new MenuItema("[당구강좌] 응급실 [Emergency Room]", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER8tV3kXUOOsReZ4e33JTDFe&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 고수들만의 비법", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER_kzB_AvI_wsEDy7WkqycYf&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 실전 당구 풀이 | 3쿠션-1쿠션 걸어치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER-A0HH_SGw3x0dH5z2KJ8rr&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 실전 당구 풀이 | 3쿠션-2쿠션 걸어치기", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER-v0B8vnx31lFTxo_w2rQT3&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 포켓볼 초급편", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER_GnNF-Eev7ozCW6zrSUt7v&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 포켓볼 초급편", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER-v0B8vnx31lFTxo_w2rQT3&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList3.add(new MenuItema("[당구강좌] 포켓볼 중,고급편", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLIHzcFhw_ER-v0B8vnx31lFTxo_w2rQT3&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-
-*/
-                //어댑터 생성
-                menuItemAdapter3 = new MenuItemAdapter(activity, itemList3);
-                //어댑터 연결
-                mnuListView3 = (ListView) findViewById(R.id.channel_lesson);
-                mnuListView3.setAdapter(menuItemAdapter3);
-
-
-                mnuListView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment, ChannelFragment.newInstance(itemList3.get(position).getMenu_link(), itemList3.get(position).getMenu_title()));
-                        fragmentTransaction.commit();
-                        mDrawerLayout.closeDrawers();
-                        //Toast.makeText (activity, "클릭 getMenu_title" + itemList2.get(position).getMenu_title()  , Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -487,6 +349,7 @@ public class MainActivity extends AppCompatActivity  {
                 mDrawerLayout.openDrawer(drawerView);
                 //mDrawerLayout.closeDrawers();
             }
+
 
                 return true;
             }
@@ -540,10 +403,6 @@ public class MainActivity extends AppCompatActivity  {
     public void NotOnline() {
         final String networkmsg = getString(R.string.networkmsg);
 
-        //mWebView.loadUrl("javascript:alert('"+networkmsg+"')");
-
-
-
         new AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
                 .setIcon(R.drawable.billiard_icon)
                 .setTitle(R.string.app_name)
@@ -557,10 +416,6 @@ public class MainActivity extends AppCompatActivity  {
                         overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
                     }
                 }).show();
-
-
-        //startActivity(new Intent(getApplicationContext(), OfflineActivity.class));
-
 
     }
 
@@ -585,7 +440,6 @@ public class MainActivity extends AppCompatActivity  {
     public static String getURLDecode(String content){
 
         try {
-//          return URLEncoder.encode(content, "utf-8");   // UTF-8
             return URLDecoder.decode(content);
         } catch (Exception e) {
             e.printStackTrace();
@@ -651,7 +505,7 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
         try {
 
             URL url = new URL(target);
-            Log.e("주소 url", ""+url);
+           // Log.e("주소 url", ""+url);
             //Toast.makeText (mContext, "클릭" + url , Toast.LENGTH_LONG).show();
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -710,22 +564,18 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
             int count = 0;
             String thum_pic, subjectText, descriptionText, viewCount, viewDate, viewCnt, videoId, channelId;
 
-           // Toast.makeText (mContext, "클릭" + jsonArray.length() , Toast.LENGTH_SHORT).show();
+           //Toast.makeText (mContext, "클릭" + jsonArray.length() , Toast.LENGTH_SHORT).show();
 
            // Log.e("jsonArray.length", ""+jsonArray.length());
 
             while (count < jsonArray.length()) {
                 JSONObject object = jsonArray.getJSONObject(count);
 
-
-
-
                 if(jsonObject.getString("kind").equals("youtube#playlistItemListResponse")){
-
 
                     try {
 
-                        // Toast.makeText (mContext, "클릭" + jsonObject.getString("kind"), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText (mContext, "클릭" + jsonObject.getString("kind"), Toast.LENGTH_SHORT).show();
 
                         subjectText = object.getJSONObject("snippet").getString("title");
                         descriptionText = object.getJSONObject("snippet").getString("description");
@@ -776,11 +626,9 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
 
                     //Toast.makeText (mContext, "channelId" + object.getJSONObject("snippet").getString("channelId"), Toast.LENGTH_SHORT).show();
 
-                    if(!object.getJSONObject("snippet").getString("channelId").equals("UCPteEGbatxsfN4sLcZsnJBQ") ) {
 
                         DriverMovie drivermovie = new DriverMovie(thum_pic, subjectText, viewDate, viewCnt, videoId , descriptionText);
                         driverMovieList.add(drivermovie);
-                    }
 
                 }
 
@@ -824,192 +672,6 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
 
 }
 
-
-
-
-class versionCheck extends AsyncTask<Void, Void, String> {
-
-    String target ="http://www.appfactory.kr/version/version/Billiard";
-
-    private  Context mContext;
-    private  String version;
-    private  String versionName;
-
-
-    public versionCheck(Context context) {
-        this.mContext = context;
-    }
-
-
-    @Override
-    protected String doInBackground(Void... voids) {
-        HttpURLConnection httpURLConnection;
-        InputStream inputStream;
-        BufferedReader bufferedReader;
-        StringBuilder stringBuilder;
-        String temp;
-        URL url;
-
-
-        PackageManager pm = mContext.getPackageManager();
-        try {
-            PackageInfo packageInfo = pm.getPackageInfo(mContext.getPackageName(), 0);
-
-             versionName = packageInfo.versionName.toString().trim();
-        } catch (Exception e) {
-
-        }
-
-        try {
-            url = new URL(target);
-
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            inputStream = httpURLConnection.getInputStream();
-
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            stringBuilder = new StringBuilder();
-            while ((temp = bufferedReader.readLine()) != null) {
-                stringBuilder.append(temp + "\n");
-            }
-
-            bufferedReader.close();
-            inputStream.close();
-            httpURLConnection.disconnect();
-
-            String last_version = stringBuilder.toString().trim();
-
-
-            Log.e("version", "/"+versionName+"/");
-            Log.e("last_version", "/"+last_version+"/");
-
-
-
-            if ( !last_version.equals(versionName) ) { //false
-
-                String uri = "market://details?id=" +mContext.getPackageName();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                mContext.startActivity(intent);
-
-            }
-
-
-
-
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-
-    }
-
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-    protected void onPostExecute(String result) {
-
-
-
-    }
-
-}
-
-
-class gms_reg extends AsyncTask<Void, Void, String> {
-    private  Context mContext;
-    String target ="http://www.appfactory.kr/gms/reg/Billiard/"+FirebaseInstanceId.getInstance().getToken();
-    String target2 ="http://www.appfactory.kr/gms/cnt/Billiard/"+FirebaseInstanceId.getInstance().getToken();
-    @Override
-    protected String doInBackground(Void... voids) {
-        HttpURLConnection httpURLConnection;
-        InputStream inputStream;
-        BufferedReader bufferedReader;
-        StringBuilder stringBuilder;
-        String temp;
-        URL url;
-
-        Log.d("주소 url 2 ", ""+FirebaseInstanceId.getInstance().getToken()) ;
-       Log.d("주소 url 2 ", ""+target) ;
-        try {
-            url = new URL(target2);
-            //Log.e("주소 url 2 ", ""+url);
-
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            inputStream = httpURLConnection.getInputStream();
-
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            stringBuilder = new StringBuilder();
-            //Log.e("stringBuilder : ", ""+stringBuilder);
-            while ((temp = bufferedReader.readLine()) != null) {
-                //Log.e("temp", ""+temp);
-                stringBuilder.append(temp + "\n");
-            }
-
-            bufferedReader.close();
-            inputStream.close();
-            httpURLConnection.disconnect();
-
-            int numInt = Integer.parseInt(stringBuilder.toString().trim());
-
-            //Log.e("numInt", ""+numInt);
-            if (numInt == 0 ) {
-
-                try {
-
-                    url = new URL(target);
-                    //Log.e("주소 url 1", ""+url);
-
-
-                    httpURLConnection = (HttpURLConnection) url.openConnection();
-                    inputStream = httpURLConnection.getInputStream();
-
-                    bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-
-                    stringBuilder = new StringBuilder();
-
-                    while ((temp = bufferedReader.readLine()) != null) {
-                        // Log.e("temp", ""+temp);
-                        stringBuilder.append(temp + "\n");
-                    }
-
-                    bufferedReader.close();
-                    inputStream.close();
-                    httpURLConnection.disconnect();
-                    return stringBuilder.toString().trim();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return null;
-                }
-
-
-            }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-
-    }
-
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-    protected void onPostExecute(String result) {
-
-
-
-    }
-
-}
 
 
 

@@ -7,17 +7,6 @@
     tools:context=".MoviePlayActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="0dp">
-        <include
-            layout="@layout/tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></include>
-
-    </LinearLayout>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,121 +21,10 @@
             android:id="@+id/youtubeView"
             class="com.google.android.youtube.player.YouTubePlayerView"
             android:layout_width="match_parent"
-            android:layout_height="280dp" />
+            android:layout_height="match_parent" />
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_gravity="top"
-            android:layout_marginBottom="40dp"
-            android:layout_marginTop="302dp">
-
-
-
-            <ScrollView
-                android:layout_height="wrap_content"
-
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                >
-
-            <TextView
-                android:id="@+id/movie_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="내용"
-                android:padding="4dp"
-                android:layout_marginTop="0dp"
-                android:textColor="@android:color/black"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-
-
-        </ScrollView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-            <Button
-                android:id="@+id/shereButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:background="@color/colorBlue"
-                android:text="친구에게공유"
-                android:textColor="#ffffff"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="2dp"
-                android:layout_height="30dp"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="0dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/favoritesButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:background="@color/colorBlue"
-                android:text="즐겨찾기저장"
-                android:textColor="#ffffff"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/favoritesdelButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:background="@color/DarkNavy"
-                android:text="즐겨찾기삭제"
-                android:textColor="#ffffff"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-            </RelativeLayout>
-        </LinearLayout>
     </FrameLayout>
 
 </LinearLayout>

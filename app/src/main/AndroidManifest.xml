@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.appfactory.billiard">
+    package="kr.appfactory.kpop">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="kr.appfactory.billiard.MainActivity"
+            android:name="kr.appfactory.kpop.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name">
             <meta-data
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="kr.appfactory.billiard.SplashActivity"
+            android:name="kr.appfactory.kpop.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
@@ -43,26 +43,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name="kr.appfactory.billiard.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name="kr.appfactory.billiard.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
 
         <activity
-            android:name="kr.appfactory.billiard.OfflineActivity"
+            android:name="kr.appfactory.kpop.OfflineActivity"
             android:theme="@style/OfflineTheme" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
 
-        <activity android:name="kr.appfactory.billiard.MoviePlayActivity"
+        <activity android:name="kr.appfactory.kpop.MoviePlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             ></activity>
     </application>

@@ -1,4 +1,4 @@
-package kr.appfactory.billiard;
+package kr.appfactory.kpop;
 
 import android.content.Context;
 import android.content.SharedPreferences;
