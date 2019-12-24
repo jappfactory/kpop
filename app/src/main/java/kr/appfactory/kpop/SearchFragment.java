@@ -241,7 +241,7 @@ public class SearchFragment extends Fragment implements AbsListView.OnScrollList
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("\""+mParam1+"\" 로 검색된 결과");
+        actionBar.setTitle("Search results with \""+mParam1 +"\"");
 
         return view;
     }

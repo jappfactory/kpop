@@ -16,14 +16,6 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-<!--
-
-        <include
-            layout="@layout/main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            ></include>
--->
         <FrameLayout
             android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
@@ -41,7 +33,7 @@
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="검색어를 입력하세요"
+            android:hint="Search by keyword"
 
             />
         </FrameLayout>
@@ -104,11 +96,6 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:layout_width="260dp"
-                android:layout_height="94dp"
-                android:src="@drawable/head_bg"
-                />
 
             <RelativeLayout
                 android:layout_height="match_parent"

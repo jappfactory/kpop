@@ -178,7 +178,9 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
         // 리스트의 갯수가 0개 이상이고, 화면에 보이는 맨 하단까지의 아이템 갯수가 총 갯수보다 크거나 같을때.. 즉 리스트의 끝일때. true
 
         String nextPageToken= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-        if(nextPageToken.isEmpty()) lastItemVisibleFlag = false;
+        if(nextPageToken.isEmpty()){
+            lastItemVisibleFlag = false;
+        }
         else  lastItemVisibleFlag = true;
 
     }

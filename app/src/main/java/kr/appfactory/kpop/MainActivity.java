@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity  {
     public void onBackPressed() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
-        builder.setIcon(R.drawable.billiard_icon);
+        builder.setIcon(R.drawable.kpop_icon);
         builder.setTitle(R.string.app_name);
         builder.setMessage(R.string.exitmsg);
         builder.setPositiveButton(R.string.exitmsgY, new DialogInterface.OnClickListener()
@@ -403,7 +403,7 @@ public class MainActivity extends AppCompatActivity  {
         final String networkmsg = getString(R.string.networkmsg);
 
         new AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-                .setIcon(R.drawable.billiard_icon)
+                .setIcon(R.drawable.kpop_icon)
                 .setTitle(R.string.app_name)
                 .setMessage(""+networkmsg+"")
                 .setNegativeButton(R.string.exitmsgN, null)
